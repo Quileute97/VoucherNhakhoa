@@ -15,7 +15,7 @@ export default function ProcessAndStories({ onBookNow }) {
     {
       num: '01',
       title: 'Tiếp Nhận & Khám 0đ',
-      desc: 'Lễ tân tiếp đón, chụp phim CT Cone Beam 3D và quét mẫu hàm số hóa miễn phí 100% khi có Voucher CTV.',
+      desc: 'Lễ tân tiếp đón, chụp phim CT Cone Beam 3D và quét mẫu hàm số hóa miễn phí 100% khi đăng ký trước.',
     },
     {
       num: '02',
@@ -51,7 +51,7 @@ export default function ProcessAndStories({ onBookNow }) {
       treatment: 'Bọc 16 răng sứ Ceramill',
       content: 'Trước đây răng mình bị xỉn màu và khấp khểnh nhẹ làm mình rất tự ti khi giao tiếp. Sau khi làm sứ tại HH Dental, nụ cười sáng trong tự nhiên vô cùng, ăn nhai hoàn toàn bình thường!',
       rating: 5,
-      partnerRef: 'Voucher Mã: P102',
+      badge: 'Khách hàng phục hình sứ',
     },
     {
       name: 'Anh Hoàng Nam',
@@ -59,15 +59,15 @@ export default function ProcessAndStories({ onBookNow }) {
       treatment: 'Trồng 2 trụ Implant Osstem',
       content: 'Mình bị mất 2 răng hàm dưới nhiều năm, cứ sợ đau mãi không dám làm. Bác sĩ tại HH Dental gây tê nhẹ tênh, cấy trụ chỉ mất 20 phút mà không hề sưng đau. Rất cảm ơn đội ngũ nha khoa!',
       rating: 5,
-      partnerRef: 'Voucher Mã: REF-N5JY',
+      badge: 'Khách hàng cấy ghép Implant',
     },
     {
       name: 'Bạn Thu Trang',
       age: '24 tuổi - Tân Bình, TP.HCM',
       treatment: 'Niềng răng trong suốt Invisalign',
-      content: 'Nhờ quét dấu răng 3D iTero 5D mà mình thấy trước được hàm răng sau khi niềng. Bác sĩ lên phác đồ rất kỹ, khay niềng trong suốt đeo không ai nhận ra luôn. Voucher CTV giảm được 500k nữa.',
+      content: 'Nhờ quét dấu răng 3D iTero 5D mà mình thấy trước được hàm răng sau khi niềng. Bác sĩ lên phác đồ rất kỹ, khay niềng trong suốt đeo không ai nhận ra luôn. Lại còn được hỗ trợ trả góp 0% lãi suất nữa.',
       rating: 5,
-      partnerRef: 'Voucher Mã: P102',
+      badge: 'Khách hàng chỉnh nha',
     },
   ];
 
@@ -144,8 +144,8 @@ export default function ProcessAndStories({ onBookNow }) {
                         <Star key={i} className="w-4 h-4 fill-amber-400" />
                       ))}
                     </div>
-                    <span className="text-[10px] font-mono font-bold bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-200">
-                      {t.partnerRef}
+                    <span className="text-[10px] font-semibold bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-200">
+                      {t.badge}
                     </span>
                   </div>
 

@@ -11,10 +11,6 @@ export default function MainLanding({ onNavigate, onBookService }) {
     onNavigate('booking');
   };
 
-  const handleOpenVoucherHub = () => {
-    onNavigate('generator');
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-teal-600 selection:text-white">
       {/* 1. Header & Navigation Bar */}
@@ -23,13 +19,11 @@ export default function MainLanding({ onNavigate, onBookService }) {
       {/* 2. Hero Section with dynamic slides */}
       <Hero 
         onBookNow={() => handleBookNow('Tư vấn tổng quát')} 
-        onOpenVoucherHub={handleOpenVoucherHub} 
       />
 
       {/* 3. Services & Pricing Grid (9 Services) */}
       <Services 
         onBookService={handleBookNow} 
-        onOpenVoucher={handleOpenVoucherHub} 
       />
 
       {/* 4. Modern Medical Technology */}
@@ -42,7 +36,7 @@ export default function MainLanding({ onNavigate, onBookService }) {
         onBookNow={() => handleBookNow('Khám tổng quát 0đ')} 
       />
 
-      {/* 6. Footer & Clinic Info */}
+      {/* 6. Footer & Clinic Info (Nơi duy nhất hiển thị cổng Voucher CTV kín đáo) */}
       <Footer onNavigate={onNavigate} />
     </div>
   );

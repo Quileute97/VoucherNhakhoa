@@ -142,34 +142,6 @@ export default function Navbar({ currentRoute, onNavigate }) {
           >
             Liên hệ
           </a>
-
-          {/* ⭐ CHUYÊN MỤC MỚI: TẠO VOUCHER ĐỐI TÁC */}
-          <button
-            onClick={() => handleNav('generator')}
-            className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 text-xs font-bold ${
-              currentRoute === 'generator'
-                ? 'bg-amber-400 text-slate-950 shadow-md'
-                : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
-            <span>Tạo Voucher CTV</span>
-            <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-red-500 text-white font-mono uppercase">VIP</span>
-          </button>
-
-          {/* ⭐ CHUYÊN MỤC MỚI: QUẦY LỄ TÂN (CRM TIẾP NHẬN) */}
-          <button
-            onClick={() => handleNav('reception')}
-            className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 text-xs font-bold ${
-              currentRoute === 'reception'
-                ? 'bg-teal-600 text-white shadow-md'
-                : 'bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200'
-            }`}
-          >
-            <Users className="w-3.5 h-3.5 text-teal-600" />
-            <span>CRM Lễ Tân</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          </button>
         </nav>
 
         {/* Right CTA: Hotline & Nút Đặt Lịch */}
@@ -237,31 +209,6 @@ export default function Navbar({ currentRoute, onNavigate }) {
             >
               Địa chỉ &amp; Liên hệ
             </button>
-
-            {/* ⭐ Chuyên mục Voucher trên Mobile */}
-            <div className="pt-2 border-t border-slate-100 space-y-2">
-              <button
-                onClick={() => handleNav('generator')}
-                className="w-full text-left px-3 py-2.5 rounded-xl bg-amber-50 text-amber-900 border border-amber-200 flex items-center justify-between font-bold"
-              >
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-600" />
-                  <span>Tạo Voucher Cho Đối Tác (CTV)</span>
-                </div>
-                <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-mono">1Human</span>
-              </button>
-
-              <button
-                onClick={() => handleNav('reception')}
-                className="w-full text-left px-3 py-2.5 rounded-xl bg-teal-50 text-teal-900 border border-teal-200 flex items-center justify-between font-bold"
-              >
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-teal-600" />
-                  <span>CRM Quầy Lễ Tân (Chờ Khám)</span>
-                </div>
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              </button>
-            </div>
           </div>
         </div>
       )}

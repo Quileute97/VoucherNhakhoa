@@ -168,55 +168,62 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* Cột 3: Tiện ích hệ thống & Cổng CTV (4 cols) */}
+          {/* Cột 3: Tiện ích hệ thống & Cổng CTV Kín Đáo (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <h5 className="font-bold text-sm text-white uppercase tracking-wider border-b border-slate-800 pb-2">
-              Hệ Thống &amp; Cổng Đối Tác
+              Dành Cho Đối Tác &amp; Nội Bộ
             </h5>
             
             <p className="text-xs text-slate-400 leading-relaxed">
-              Cổng tương tác dành riêng cho Đối tác (CTV) và Lễ tân trực ca của Phòng khám Nha khoa HH Dental.
+              Khu vực dành riêng cho Đối tác (CTV) và Lễ tân trực ca của Phòng khám Nha khoa HH Dental.
             </p>
 
-            <div className="space-y-2.5">
-              {/* Nút Tạo Voucher CTV */}
+            <div className="space-y-2">
+              {/* Nút Tạo Voucher CTV kín đáo */}
               <button
                 onClick={() => onNavigate('generator')}
-                className="w-full p-3 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-200 flex items-center justify-between text-xs font-bold transition-all text-left group"
+                className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white flex items-center justify-between text-xs transition-all text-left group"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black">
-                    1H
+                  <div className="w-7 h-7 rounded-lg bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+                    <Sparkles className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="block text-white font-bold">Tạo Voucher Cho Đối Tác (CTV)</span>
-                    <span className="text-[10px] text-amber-300 font-normal">Hệ thống tạo mã QR &amp; Voucher tự động</span>
+                    <span className="block font-semibold text-slate-200 group-hover:text-amber-300 transition-colors">
+                      Tạo Voucher Dành Cho CTV
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-normal">
+                      Hệ thống tự động sinh ảnh &amp; QR Code cá nhân hóa
+                    </span>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
               </button>
 
-              {/* Nút Quầy Lễ Tân CRM */}
+              {/* Nút Quầy Lễ Tân CRM kín đáo */}
               <button
                 onClick={() => onNavigate('reception')}
-                className="w-full p-3 rounded-2xl bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/30 text-teal-200 flex items-center justify-between text-xs font-bold transition-all text-left group"
+                className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white flex items-center justify-between text-xs transition-all text-left group"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-teal-500 text-slate-950 flex items-center justify-center">
-                    <Users className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 rounded-lg bg-slate-800 text-teal-400 border border-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+                    <Users className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="block text-white font-bold">Cổng Tiếp Nhận Lễ Tân (CRM)</span>
-                    <span className="text-[10px] text-teal-300 font-normal">Danh sách khách hàng chờ khám</span>
+                    <span className="block font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">
+                      Cổng Tiếp Nhận Lễ Tân (CRM)
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-normal">
+                      Danh sách bệnh nhân đặt lịch &amp; chờ khám
+                    </span>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400">
-              <span className="block font-semibold text-slate-200 mb-0.5">Chính sách hoa hồng Đối tác:</span>
-              Chi trả 20% tự động khi khách hàng thực hiện điều trị thành công tại phòng khám.
+            <div className="p-2.5 rounded-xl bg-slate-900/50 border border-slate-800/80 text-[11px] text-slate-400">
+              <span className="text-slate-300 font-medium">Chính sách CTV:</span> Hoa hồng 20% khi khách hoàn thành điều trị tại phòng khám.
             </div>
           </div>
 

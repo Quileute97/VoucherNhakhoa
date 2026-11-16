@@ -11,7 +11,7 @@ import {
   HeartHandshake
 } from 'lucide-react';
 
-export default function Hero({ onBookNow, onOpenVoucherHub }) {
+export default function Hero({ onBookNow }) {
   const slides = [
     {
       id: 1,
@@ -94,9 +94,9 @@ export default function Hero({ onBookNow, onOpenVoucherHub }) {
                 <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
                 <span>100% Bác sĩ Chuyên khoa RHM</span>
               </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-amber-200 bg-white/5 p-2.5 rounded-xl border border-amber-400/20">
+              <div className="flex items-center gap-2 text-xs font-semibold text-teal-200 bg-white/5 p-2.5 rounded-xl border border-white/10">
                 <Award className="w-4 h-4 text-amber-300 shrink-0" />
-                <span>Khám 0đ khi có Voucher CTV</span>
+                <span>Thăm khám &amp; Chụp CT 0đ</span>
               </div>
             </div>
 
@@ -110,14 +110,13 @@ export default function Hero({ onBookNow, onOpenVoucherHub }) {
                 <span>{slide.ctaText}</span>
               </button>
 
-              <button
-                onClick={onOpenVoucherHub}
+              <a
+                href="tel:0933989918"
                 className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-sm border border-white/20 active:scale-95 transition-all flex items-center gap-2 backdrop-blur-md"
               >
-                <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Tạo Voucher Đối Tác (CTV)</span>
-                <ArrowRight className="w-4 h-4 text-amber-400" />
-              </button>
+                <Phone className="w-4 h-4 text-teal-300" />
+                <span>Hotline: 093 398 9918</span>
+              </a>
             </div>
 
             {/* Slide Indicators */}

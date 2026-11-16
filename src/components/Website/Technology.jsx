@@ -138,7 +138,7 @@ export default function Technology({ onBookAppointment }) {
           </div>
           <div className="p-4 rounded-2xl bg-teal-900 text-white text-center">
             <span className="block font-black text-2xl font-mono text-amber-300">0đ</span>
-            <span className="text-xs text-teal-100 font-medium mt-1 block">Phí chụp phim CT 3D khi có Voucher CTV</span>
+            <span className="text-xs text-teal-100 font-medium mt-1 block">Phí chụp phim CT Cone Beam 3D</span>
           </div>
           <div className="p-4 rounded-2xl bg-teal-900 text-white text-center">
             <span className="block font-black text-2xl font-mono text-amber-300">15 Năm</span>

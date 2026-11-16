@@ -9,7 +9,7 @@ import {
   Star
 } from 'lucide-react';
 
-export default function Services({ onBookService, onOpenVoucher }) {
+export default function Services({ onBookService }) {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
@@ -27,8 +27,8 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Trồng Răng Implant Kỹ Thuật Số',
       badge: 'Công nghệ tiên tiến',
       price: 'Từ 9.500.000đ / trụ',
-      discountPrice: 'Tặng Voucher 500k + Khám 0đ',
-      warranty: 'Bảo hành chính hãng trọn đời',
+      discountPrice: 'Khám & Chụp CT 0đ',
+      warranty: 'Bảo hành trọn đời',
       image: '/hhdental/hero-implant.webp',
       desc: 'Phục hình mất răng bằng trụ Titanium chính hãng Thụy Sĩ, Mỹ, Hàn Quốc. Tích hợp sinh học nhanh chóng, không đau, ăn nhai chắc chắn như răng thật.',
       highlights: ['Trụ Osstem, Dentium, Straumann', 'Chụp phim CT Cone Beam 3D miễn phí', 'Không sưng, cấy ghép chuẩn xác'],
@@ -39,7 +39,7 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Bọc Răng Sứ Thẩm Mỹ Cao Cấp',
       badge: 'Bảo tồn răng thật',
       price: 'Từ 1.800.000đ / răng',
-      discountPrice: 'Giảm 500.000đ với Voucher CTV',
+      discountPrice: 'Trả góp 0% lãi suất',
       warranty: 'Bảo hành 10 - 15 năm',
       image: '/hhdental/service-boc-su.webp',
       desc: 'Dòng sứ nguyên khối không kim loại (Ceramill, Emax, Cercon, Lava Plus). Thấu quang tự nhiên, trắng trong, không đen viền nướu theo thời gian.',
@@ -51,7 +51,7 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Niềng Răng Invisalign & Mắc Cài',
       badge: 'Chỉnh nha chuẩn Y khoa',
       price: 'Từ 18.000.000đ / liệu trình',
-      discountPrice: 'Trả góp 0% lãi suất',
+      discountPrice: 'Trả góp từ 1tr/tháng',
       warranty: 'Hợp đồng cam kết hiệu quả',
       image: '/hhdental/service-nieng-rang.webp',
       desc: 'Khắc phục hoàn toàn răng hô, móm, thưa, khấp khểnh. Scan dấu răng 3D với máy quét iTero Element 5D xem trước kết quả sau niềng.',
@@ -63,7 +63,7 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Dán Sứ Veneer Siêu Mỏng',
       badge: 'Bảo tồn răng 100%',
       price: 'Từ 4.500.000đ / mặt dán',
-      discountPrice: 'Ưu đãi Voucher CTV độc quyền',
+      discountPrice: 'Tặng gói vệ sinh răng',
       warranty: 'Bảo hành 15 năm',
       image: '/hhdental/service-veneer.webp',
       desc: 'Độ mỏng chỉ từ 0.2mm - 0.5mm, không mài nhỏ răng thật. Che phủ khuyết điểm xỉn màu, mẻ, răng thưa mang lại nụ cười rạng rỡ tự nhiên.',
@@ -87,7 +87,7 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Trám Răng Thẩm Mỹ Laser',
       badge: 'Đồng màu răng thật',
       price: 'Từ 200.000đ / răng',
-      discountPrice: 'Áp dụng Voucher CTV',
+      discountPrice: 'Bảo hành mối hàn',
       warranty: 'Bảo hành độ bền miếng trám',
       image: '/hhdental/service-tram-rang.webp',
       desc: 'Vật liệu Composite nano cao cấp phục hình răng sâu, răng mẻ, hở kẽ răng cửa. Kết dính chắc chắn, chống bong tróc khi ăn nhai.',
@@ -111,7 +111,7 @@ export default function Services({ onBookService, onOpenVoucher }) {
       title: 'Cạo Vôi Răng Siêu Âm Piezotome',
       badge: 'Sạch mảng bám êm ái',
       price: 'Từ 150.000đ / lần',
-      discountPrice: 'Tặng 0đ khi dùng Voucher CTV',
+      discountPrice: 'Đánh bóng men răng',
       warranty: 'Đánh bóng men răng cao cấp',
       image: '/hhdental/service-cao-voi.webp',
       desc: 'Sử dụng bước sóng siêu âm rung tần số nhẹ tách rời cao răng dưới nướu mà không xâm lấn men răng hay làm chảy máu chân răng.',
@@ -223,56 +223,46 @@ export default function Services({ onBookService, onOpenVoucher }) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => onBookService && onBookService(service.title)}
-                    className="w-full py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs tracking-wide shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Đặt Lịch Khám</span>
-                  </button>
-
-                  <button
-                    onClick={onOpenVoucher}
-                    className="w-full py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs tracking-wide flex items-center justify-center gap-1 active:scale-95 transition-all"
-                  >
-                    <Tag className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Tạo Voucher</span>
-                  </button>
-                </div>
+                <button
+                  onClick={() => onBookService && onBookService(service.title)}
+                  className="w-full py-3 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs tracking-wide shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Đặt Lịch Thăm Khám</span>
+                </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Voucher Banner inside Services */}
+        {/* Customer Consultation Banner inside Services */}
         <div className="mt-16 rounded-3xl bg-gradient-to-r from-teal-900 via-teal-800 to-slate-900 p-8 sm:p-10 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.15),transparent_70%)] pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.15),transparent_70%)] pointer-events-none" />
           
           <div className="relative z-10 max-w-2xl space-y-4">
-            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-400 text-slate-950 inline-block">
-              Đặc quyền Cộng Tác Viên &amp; Đối Tác
+            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-500/20 text-teal-300 border border-teal-400/30 inline-block">
+              Cam Kết Dịch Vụ Chuẩn Y Khoa
             </span>
             <h3 className="text-2xl sm:text-3xl font-black font-serif">
-              Tạo Thẻ Voucher Khám 0đ &amp; Giảm 500k Cho Khách Hàng Của Bạn
+              Đặt Lịch Thăm Khám &amp; Chụp Phim CT Cone Beam 3D Miễn Phí
             </h3>
             <p className="text-teal-100 text-sm leading-relaxed">
-              Bạn là Đối tác, CTV của HH Dental? Chỉ cần 30 giây để tạo Voucher thẻ VIP cá nhân hóa với Mã Ref và QR Code tự động để chia sẻ qua Zalo, Messenger cho bạn bè, người thân.
+              Đội ngũ Bác sĩ Chuyên khoa Răng Hàm Mặt tại HH Dental trực tiếp kiểm tra khớp cắn, mật độ xương và tư vấn phác đồ điều trị an toàn, bảo tồn răng thật tối đa.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
-                onClick={onOpenVoucher}
+                onClick={() => onBookService && onBookService('Khám tổng quát 0đ')}
                 className="px-6 py-3 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-amber-400/20 active:scale-95 transition-all flex items-center gap-2"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Mở Trình Tạo Voucher Ngay</span>
+                <Calendar className="w-4 h-4" />
+                <span>Đặt Lịch Hẹn Ngay</span>
               </button>
-              <button
-                onClick={() => onBookService && onBookService('Khám tổng quát 0đ')}
-                className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all"
+              <a
+                href="tel:0933989918"
+                className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all flex items-center gap-1.5"
               >
-                Đặt lịch trực tiếp không cần mã
-              </button>
+                <span>Hotline: 093 398 9918</span>
+              </a>
             </div>
           </div>
         </div>
