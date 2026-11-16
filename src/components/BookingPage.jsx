@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { verifyPartner, createBookingCustomer } from '../lib/supabase';
 
-export default function BookingPage({ initialRefCode, onBackToGenerator }) {
+export default function BookingPage({ initialRefCode, onBackToGenerator, onBackToWebsite, onGoToReception }) {
   // 1. Đọc tham số `?ref=...` từ URL
   const [refCode, setRefCode] = useState('');
   const [partner, setPartner] = useState(null);
@@ -148,20 +148,36 @@ export default function BookingPage({ initialRefCode, onBackToGenerator }) {
     <div className="min-h-screen bg-ambient-mesh pb-20 pt-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         
-        {/* Navigation Bar back to Generator */}
-        <div className="flex items-center justify-between mb-8">
-          <button
-            type="button"
-            onClick={onBackToGenerator}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-sm font-medium transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Quay lại Voucher Hub</span>
-          </button>
+        {/* Navigation Bar back to Website / Generator / Reception */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onBackToWebsite}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 text-xs font-semibold transition-all"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Về Trang Chủ HH Dental</span>
+            </button>
+            <button
+              type="button"
+              onClick={onBackToGenerator}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-semibold transition-all"
+            >
+              <Tag className="w-3.5 h-3.5" />
+              <span>Tạo Voucher CTV</span>
+            </button>
+          </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
-            <span>Hệ Thống Đặt Lịch Tự Động</span>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={onGoToReception}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/30 text-xs font-semibold transition-all"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>CRM Lễ Tân</span>
+            </button>
           </div>
         </div>
 
@@ -241,15 +257,15 @@ export default function BookingPage({ initialRefCode, onBackToGenerator }) {
                 </div>
               </div>
 
-              {/* Địa chỉ & Hotline */}
+              {/* Địa chỉ & Hotline HH Dental */}
               <div className="mt-5 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span>Cơ sở: 123 Phố Huế, Hai Bà Trưng, Hà Nội</span>
+                  <span>HH Dental: 251 Vĩnh Viễn, P.4, Q.10, TP.HCM</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-teal-300 font-bold">
                   <PhoneCall className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Hotline: 1900 6868</span>
+                  <a href="tel:0933989918" className="hover:underline">Hotline: 093 398 9918</a>
                 </div>
               </div>
             </div>
@@ -268,17 +284,26 @@ export default function BookingPage({ initialRefCode, onBackToGenerator }) {
                     note: '',
                   });
                 }}
-                className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-all"
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold transition-all"
               >
-                Đặt thêm lịch hẹn khác
+                Đặt thêm lịch khác
               </button>
 
               <button
                 type="button"
-                onClick={onBackToGenerator}
-                className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 text-sm font-bold shadow-lg shadow-teal-500/25 transition-all"
+                onClick={onGoToReception}
+                className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-teal-600/30 transition-all flex items-center justify-center gap-2"
               >
-                Trở về Hub Tạo Voucher
+                <Check className="w-4 h-4" />
+                <span>Xem Trong CRM Lễ Tân</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={onBackToWebsite}
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold transition-all"
+              >
+                Về Trang Chủ
               </button>
             </div>
           </div>

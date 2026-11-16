@@ -1,8 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Cấu hình Supabase cố định của hệ thống phòng khám HH Dental CRM
-export const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://cbumyrnukqqznfizcgwi.supabase.co';
-export const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_9HMdUlPmoyyVvGClSVUG7Q_pYyxErsI';
+export const supabaseUrl = 
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SUPABASE_URL) || 
+  (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_URL) || 
+  'https://cbumyrnukqqznfizcgwi.supabase.co';
+
+export const supabaseAnonKey = 
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SUPABASE_ANON_KEY) || 
+  (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_ANON_KEY) || 
+  'sb_publishable_9HMdUlPmoyyVvGClSVUG7Q_pYyxErsI';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
@@ -29,7 +36,6 @@ export async function verifyPartner(input) {
   const upperCode = cleanInput.toUpperCase();
 
   try {
-    // 1. Thử tìm theo code hoặc phone
     const { data, error } = await supabase
       .from('partners')
       .select('id, code, name, phone, title, status')
@@ -83,12 +89,12 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
 
   // 1. Kiểm tra đối tác bảo trợ qua refCode nếu có
   let partnerId = null;
-  let partnerName = null;
+  let partnerCode = null;
   if (refCode && refCode.trim()) {
     const verified = await verifyPartner(refCode.trim());
     if (verified.success && verified.partner) {
       partnerId = verified.partner.id;
-      partnerName = verified.partner.name;
+      partnerCode = verified.partner.code;
     }
   }
 
@@ -103,7 +109,7 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
     appointmentDate ? `Ngày hẹn: ${appointmentDate}` : '',
     appointmentTime ? `Giờ: ${appointmentTime}` : '',
     note ? `Tình trạng: ${note}` : '',
-    partnerName ? `CTV giới thiệu: ${partnerName} (${refCode})` : '',
+    partnerCode ? `Mã CTV: ${partnerCode}` : '',
     `Mã đặt lịch: ${bookingCode}`,
   ].filter(Boolean).join(' | ');
 
@@ -119,7 +125,7 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
           referrer_customer_id: null,
           depth: 1,
           treatment: `${treatmentText} [${fullNote}]`,
-          status: 'lead',
+          status: 'lead', // Khách mới chuyển ngay sang danh sách chờ khám của Lễ tân
         },
       ])
       .select()
@@ -137,7 +143,7 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
       success: true,
       bookingCode,
       customer: data,
-      partnerName,
+      partnerCode,
     };
   } catch (err) {
     console.error('Lỗi ngoại lệ khi đặt lịch:', err);
@@ -148,5 +154,64 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
   }
 }
 
-export default supabase;
+/**
+ * LẤY DANH SÁCH CHỜ KHÁM DÀNH CHO USER LỄ TÂN (CRM RECEPTION DESK)
+ * Bao gồm thông tin đối tác bảo trợ để tự động gắn CTV nhận 20%
+ */
+export async function fetchReceptionWaitingList() {
+  try {
+    const [cRes, pRes] = await Promise.all([
+      supabase.from('customers').select('*').order('created_at', { ascending: false }).limit(100),
+      supabase.from('partners').select('id, code, name, phone, status'),
+    ]);
 
+    if (cRes.error) {
+      console.error('Error fetching customers:', cRes.error);
+      return { success: false, error: cRes.error.message, data: [] };
+    }
+
+    const partnersMap = new Map((pRes.data || []).map(p => [p.id, p]));
+
+    const waitingList = (cRes.data || []).map(c => {
+      const owner = c.owner_partner_id ? partnersMap.get(c.owner_partner_id) : null;
+      return {
+        ...c,
+        partnerCode: owner ? owner.code : null,
+        partnerName: owner ? owner.name : null,
+      };
+    });
+
+    return {
+      success: true,
+      data: waitingList,
+    };
+  } catch (err) {
+    console.error('Error in fetchReceptionWaitingList:', err);
+    return { success: false, error: err.message, data: [] };
+  }
+}
+
+/**
+ * CẬP NHẬT TRẠNG THÁI KHÁCH HÀNG TẠI QUẦY LỄ TÂN
+ * status: 'lead' (Chờ khám) | 'consulting' (Đang tư vấn) | 'treating' (Đang điều trị) | 'completed' (Đã xong)
+ */
+export async function updateCustomerStatus(customerId, newStatus) {
+  try {
+    const { data, error } = await supabase
+      .from('customers')
+      .update({ status: newStatus })
+      .eq('id', customerId)
+      .select()
+      .single();
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, data };
+  } catch (err) {
+    return { success: false, error: err.message };
+  }
+}
+
+export default supabase;
