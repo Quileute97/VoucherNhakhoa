@@ -289,13 +289,22 @@ export default function BookingPage({ initialRefCode, onBackToGenerator, onBackT
                 Đặt thêm lịch khác
               </button>
 
-              <button
-                type="button"
-                onClick={onGoToReception}
+              <a
+                href="https://hh-dental-crm.drminhdat-work.workers.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-teal-600/30 transition-all flex items-center justify-center gap-2"
               >
                 <Check className="w-4 h-4" />
-                <span>Xem Trong CRM Lễ Tân</span>
+                <span>Mở Hệ Thống CRM Live</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={onGoToReception}
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold transition-all"
+              >
+                Quầy Lễ Tân Nội Bộ
               </button>
 
               <button

@@ -50,13 +50,15 @@ export default function Navbar({ currentRoute, onNavigate }) {
           <div className="flex items-center gap-4 text-xs">
             <span className="text-teal-200">Giấy phép hoạt động Sở Y Tế: 09252/HCM-GPHĐ</span>
             <span>•</span>
-            <button
-              onClick={() => handleNav('reception')}
+            <a
+              href="https://hh-dental-crm.drminhdat-work.workers.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-amber-300 hover:text-white font-semibold flex items-center gap-1 transition-colors"
             >
               <Stethoscope className="w-3 h-3" />
               <span>Cổng Lễ Tân CRM</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

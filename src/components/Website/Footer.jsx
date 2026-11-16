@@ -200,21 +200,45 @@ export default function Footer({ onNavigate }) {
                 <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
               </button>
 
-              {/* Nút Quầy Lễ Tân CRM kín đáo */}
+              {/* Nút Hệ Thống CRM Live trên Cloudflare Workers */}
+              <a
+                href="https://hh-dental-crm.drminhdat-work.workers.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-teal-700/60 text-slate-300 hover:text-white flex items-center justify-between text-xs transition-all text-left group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-teal-950 text-teal-400 border border-teal-800/60 flex items-center justify-center font-bold text-xs shrink-0">
+                    <Users className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span className="block font-semibold text-slate-200 group-hover:text-teal-300 transition-colors flex items-center gap-1.5">
+                      <span>Hệ Thống CRM HH Dental</span>
+                      <span className="text-[9px] bg-teal-500/20 text-teal-300 px-1.5 py-0.2 rounded font-mono">LIVE</span>
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-normal">
+                      hh-dental-crm.drminhdat-work.workers.dev
+                    </span>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
+              </a>
+
+              {/* Nút Quầy Lễ Tân CRM nội bộ */}
               <button
                 onClick={() => onNavigate('reception')}
                 className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white flex items-center justify-between text-xs transition-all text-left group"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-slate-800 text-teal-400 border border-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
-                    <Users className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+                    <Clock className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="block font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">
-                      Cổng Tiếp Nhận Lễ Tân (CRM)
+                    <span className="block font-semibold text-slate-200 group-hover:text-slate-100 transition-colors">
+                      Quầy Lễ Tân (Danh Sách Chờ Khám)
                     </span>
                     <span className="text-[10px] text-slate-500 font-normal">
-                      Danh sách bệnh nhân đặt lịch &amp; chờ khám
+                      Tiếp nhận bệnh nhân &amp; kích hoạt hoa hồng 20%
                     </span>
                   </div>
                 </div>

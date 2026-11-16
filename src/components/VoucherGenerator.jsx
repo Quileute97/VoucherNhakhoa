@@ -193,9 +193,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
       },
       icon: IdCard,
       suggestions: [
-        { label: 'Mã: P102', value: 'P102' },
-        { label: 'SĐT: 0359389615', value: '0359389615' },
         { label: 'Mã: REF-N5JY', value: 'REF-N5JY' },
+        { label: 'SĐT: 0359389615', value: '0359389615' },
+        { label: 'Mã: REF-YRW43C', value: 'REF-YRW43C' },
+        { label: 'Mã: P102', value: 'P102' },
       ],
     },
     {

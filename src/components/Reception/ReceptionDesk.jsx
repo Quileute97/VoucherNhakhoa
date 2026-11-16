@@ -159,6 +159,16 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-teal-600' : ''}`} />
             </button>
 
+            <a
+              href="https://hh-dental-crm.drminhdat-work.workers.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Hệ Thống CRM Live</span>
+            </a>
+
             <button
               onClick={onNavigateToGenerator}
               className="px-3.5 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs"
