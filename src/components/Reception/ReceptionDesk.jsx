@@ -64,6 +64,7 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
       const statusLabels = {
         treating: 'Đã chuyển vào phòng khám',
         completed: 'Đã hoàn thành ca khám & Kích hoạt hoa hồng 20% cho CTV',
+        arrived: 'Khách đã đến phòng khám',
         lead: 'Đã chuyển về danh sách chờ',
       };
       showToast(statusLabels[nextStatus] || 'Cập nhật trạng thái thành công!');
@@ -79,6 +80,7 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
   // Tính toán số liệu thống kê
   const totalCount = customers.length;
   const leadCount = customers.filter((c) => c.status === 'lead').length;
+  const arrivedCount = customers.filter((c) => c.status === 'arrived').length;
   const treatingCount = customers.filter((c) => c.status === 'treating').length;
   const completedCount = customers.filter((c) => c.status === 'completed').length;
   const ctvAttributedCount = customers.filter((c) => Boolean(c.owner_partner_id || c.partnerCode)).length;
@@ -321,6 +323,18 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
             >
               Chờ khám ({leadCount})
             </button>
+            {arrivedCount > 0 && (
+              <button
+                onClick={() => setStatusFilter('arrived')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                  statusFilter === 'arrived'
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-purple-50 text-purple-800 hover:bg-purple-100'
+                }`}
+              >
+                Tại PK ({arrivedCount})
+              </button>
+            )}
             <button
               onClick={() => setStatusFilter('treating')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
@@ -467,6 +481,11 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
                               <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                               <span>Đã khám xong</span>
                             </span>
+                          ) : cust.status === 'arrived' ? (
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-purple-100 text-purple-800 border border-purple-200 inline-flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-purple-600 animate-pulse" />
+                              <span>Đang ở phòng khám</span>
+                            </span>
                           ) : (
                             <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200 inline-flex items-center gap-1">
                               <Clock className="w-3 h-3 text-amber-600" />
@@ -477,7 +496,7 @@ export default function ReceptionDesk({ onNavigateToWebsite, onNavigateToGenerat
 
                         {/* 6. Thao tác tiếp nhận của Lễ Tân */}
                         <td className="py-4 px-4 align-top text-right space-x-1">
-                          {cust.status === 'lead' && (
+                          {(cust.status === 'lead' || cust.status === 'arrived') && (
                             <button
                               onClick={() => handleUpdateStatus(cust.id, 'treating')}
                               disabled={isUpdating}
