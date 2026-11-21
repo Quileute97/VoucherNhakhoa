@@ -98,6 +98,28 @@ export async function createBookingCustomer({ name, phone, treatment, appointmen
     }
   }
 
+  // Nếu không có mã CTV hoặc mã không tồn tại, tự động gán cho Đối tác sáng lập để không vi phạm NOT NULL của DB
+  if (!partnerId) {
+    try {
+      const { data: rootPartner } = await supabase
+        .from('partners')
+        .select('id, code')
+        .eq('status', 'ACTIVE')
+        .order('depth', { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+      if (rootPartner) {
+        partnerId = rootPartner.id;
+        if (!partnerCode) {
+          partnerCode = rootPartner.code;
+        }
+      }
+    } catch (err) {
+      console.warn('Fallback root partner error:', err);
+    }
+  }
+
   // 2. Tạo mã khách hàng & mã booking chuyên nghiệp
   const year = new Date().getFullYear();
   const randomSuffix = Math.floor(1000 + Math.random() * 9000);

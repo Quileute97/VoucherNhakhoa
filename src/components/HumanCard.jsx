@@ -16,6 +16,7 @@ export const HumanCard = forwardRef(({
   voucherName = 'VOUCHER KHÁM 0Đ',
   discount = 'GIẢM 500.000Đ DỊCH VỤ SỨ & NIỀNG RĂNG',
   url = 'hhdental.vn/dat-lich?ref=P102',
+  qrValue = null,
   theme = 'ivory',
   codeType = 'qr', // 'qr' hoặc 'barcode'
 }, ref) => {
@@ -275,11 +276,11 @@ export const HumanCard = forwardRef(({
                 </svg>
               </div>
             ) : (
-              /* QR Code quét camera tiện lợi */
-              <div className={`p-1.5 rounded-xl ${current.qrBg} shadow-sm border border-black/10 flex items-center justify-center`}>
+              /* QR Code quét camera thật dẫn thẳng đến trang đặt lịch */
+              <div className={`p-1 rounded-xl ${current.qrBg} shadow-sm border border-black/10 flex items-center justify-center`}>
                 <QRCodeSVG
-                  value={`https://${displayUrl.replace(/^https?:\/\//, '')}`}
-                  size={52}
+                  value={qrValue || (displayUrl.startsWith('http') ? displayUrl : `https://${displayUrl}`)}
+                  size={56}
                   level="M"
                   fgColor={current.qrFg}
                   bgColor="transparent"

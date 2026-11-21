@@ -113,9 +113,15 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
     }
   };
 
-  // Link đặt lịch thực tế
+  // Link đặt lịch thực tế được mã hóa vào mã QR
+  // Khi chạy localhost/127.0.0.1: Tự động dùng IP mạng LAN (192.168.1.4) để điện thoại quét màn hình là mở được ngay!
+  const isLocalHost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  const baseBookingOrigin = isLocalHost 
+    ? `http://192.168.1.4:${window.location.port || '5174'}` 
+    : (typeof window !== 'undefined' ? window.location.origin : 'http://127.0.0.1:5174');
+
   const activePartnerCode = partner?.code || partnerIdInput || 'P102';
-  const actualBookingUrl = `${window.location.origin}/dat-lich?ref=${activePartnerCode}`;
+  const actualBookingUrl = `${baseBookingOrigin}/dat-lich?ref=${activePartnerCode}`;
   const displayShortLink = `hhdental.vn/dat-lich?ref=${activePartnerCode}`;
 
   // Tin nhắn chia sẻ qua Zalo
@@ -444,6 +450,7 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
             voucherName={voucherName}
             discount={discount}
             url={displayShortLink}
+            qrValue={actualBookingUrl}
             theme={selectedStyle}
             codeType={codeType}
           />
@@ -520,6 +527,24 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           >
             1H.
           </button>
+        </div>
+
+        {/* Chỉ dẫn mã QR thật */}
+        <div className="mt-3 flex items-center justify-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/10 text-[11px] text-white/80 shadow-md">
+            <QrCode className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+            <span className="text-white/50">Mã QR thật:</span>
+            <a
+              href={actualBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-teal-300 hover:text-teal-200 hover:underline flex items-center gap-1 font-semibold"
+              title="Nhấn để mở liên kết đặt lịch tương ứng"
+            >
+              <span>{actualBookingUrl}</span>
+              <ExternalLink className="w-3 h-3 text-teal-400" />
+            </a>
+          </div>
         </div>
 
       </main>
