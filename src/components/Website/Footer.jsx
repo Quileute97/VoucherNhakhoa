@@ -175,7 +175,7 @@ export default function Footer({ onNavigate }) {
             </h5>
             
             <p className="text-xs text-slate-400 leading-relaxed">
-              Khu vực dành riêng cho Đối tác (CTV) và Lễ tân trực ca của Phòng khám Nha khoa HH Dental.
+              Khu vực dành riêng cho Đối tác (CTV) và Hệ thống quản trị CRM của Phòng khám Nha khoa HH Dental.
             </p>
 
             <div className="space-y-2">
@@ -223,27 +223,6 @@ export default function Footer({ onNavigate }) {
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
               </a>
-
-              {/* Nút Quầy Lễ Tân CRM nội bộ */}
-              <button
-                onClick={() => onNavigate('reception')}
-                className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white flex items-center justify-between text-xs transition-all text-left group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
-                    <Clock className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <span className="block font-semibold text-slate-200 group-hover:text-slate-100 transition-colors">
-                      Quầy Lễ Tân (Danh Sách Chờ Khám)
-                    </span>
-                    <span className="text-[10px] text-slate-500 font-normal">
-                      Tiếp nhận bệnh nhân &amp; kích hoạt hoa hồng 20%
-                    </span>
-                  </div>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
-              </button>
             </div>
 
             <div className="p-2.5 rounded-xl bg-slate-900/50 border border-slate-800/80 text-[11px] text-slate-400">

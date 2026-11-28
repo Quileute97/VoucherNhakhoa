@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import MainLanding from './components/Website/MainLanding';
 import VoucherGenerator from './components/VoucherGenerator';
 import BookingPage from './components/BookingPage';
-import ReceptionDesk from './components/Reception/ReceptionDesk';
 
 export default function App() {
-  // Trạng thái route: 'website' (mặc định), 'generator', 'booking', 'reception'
+  // Trạng thái route: 'website' (mặc định), 'generator', 'booking'
   const [currentRoute, setCurrentRoute] = useState('website');
   const [activeRefCode, setActiveRefCode] = useState('');
 
@@ -26,8 +25,6 @@ export default function App() {
         setCurrentRoute('booking');
       } else if (pathname.includes('/tao-voucher') || hash.includes('/tao-voucher') || hash.includes('tao-voucher')) {
         setCurrentRoute('generator');
-      } else if (pathname.includes('/le-tan') || hash.includes('/le-tan') || hash.includes('le-tan') || hash.includes('crm')) {
-        setCurrentRoute('reception');
       } else {
         // Mặc định hiển thị toàn bộ trang web Nha khoa HH Dental được clone từ hhdental.vn
         setCurrentRoute('website');
@@ -50,7 +47,6 @@ export default function App() {
     let path = '/';
     if (route === 'generator') path = '/tao-voucher';
     else if (route === 'booking') path = ref ? `/dat-lich?ref=${encodeURIComponent(ref)}` : '/dat-lich';
-    else if (route === 'reception') path = '/le-tan';
 
     window.history.pushState({}, '', path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -72,7 +68,6 @@ export default function App() {
           <VoucherGenerator 
             onNavigateToBooking={(ref) => navigateTo('booking', ref)}
             onNavigateToWebsite={() => navigateTo('website')}
-            onNavigateToReception={() => navigateTo('reception')}
           />
         </div>
       )}
@@ -84,18 +79,8 @@ export default function App() {
             initialRefCode={activeRefCode}
             onBackToGenerator={() => navigateTo('generator')}
             onBackToWebsite={() => navigateTo('website')}
-            onGoToReception={() => navigateTo('reception')}
           />
         </div>
-      )}
-
-      {/* 4. CRM QUẦY LỄ TÂN (DANH SÁCH CHỜ KHÁM GẮN LIỀN VỚI CTV NHẬN 20%) */}
-      {currentRoute === 'reception' && (
-        <ReceptionDesk 
-          onNavigateToWebsite={() => navigateTo('website')}
-          onNavigateToGenerator={() => navigateTo('generator')}
-          onNavigateToBooking={() => navigateTo('booking', activeRefCode)}
-        />
       )}
     </div>
   );

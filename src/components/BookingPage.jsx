@@ -168,17 +168,6 @@ export default function BookingPage({ initialRefCode, onBackToGenerator, onBackT
               <span>Tạo Voucher CTV</span>
             </button>
           </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={onGoToReception}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/30 text-xs font-semibold transition-all"
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>CRM Lễ Tân</span>
-            </button>
-          </div>
         </div>
 
         {/* ===================== TRƯỜNG HỢP: ĐÃ ĐẶT LỊCH THÀNH CÔNG ===================== */}
@@ -298,14 +287,6 @@ export default function BookingPage({ initialRefCode, onBackToGenerator, onBackT
                 <Check className="w-4 h-4" />
                 <span>Mở Hệ Thống CRM Live</span>
               </a>
-
-              <button
-                type="button"
-                onClick={onGoToReception}
-                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold transition-all"
-              >
-                Quầy Lễ Tân Nội Bộ
-              </button>
 
               <button
                 type="button"

@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import confetti from 'canvas-confetti';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  X, 
-  Check, 
-  Download, 
-  Copy, 
-  MessageCircle, 
-  Sparkles, 
-  RefreshCw, 
-  QrCode, 
-  Barcode, 
-  ShieldCheck, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  X,
+  Check,
+  Download,
+  Copy,
+  MessageCircle,
+  Sparkles,
+  RefreshCw,
+  QrCode,
+  Barcode,
+  ShieldCheck,
   ExternalLink,
   Search,
   CheckCircle2,
@@ -116,8 +116,8 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
   // Link đặt lịch thực tế được mã hóa vào mã QR
   // Khi chạy localhost/127.0.0.1: Tự động dùng IP mạng LAN (192.168.1.4) để điện thoại quét màn hình là mở được ngay!
   const isLocalHost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-  const baseBookingOrigin = isLocalHost 
-    ? `http://192.168.1.4:${window.location.port || '5174'}` 
+  const baseBookingOrigin = isLocalHost
+    ? `http://192.168.1.4:${window.location.port || '5174'}`
     : (typeof window !== 'undefined' ? window.location.origin : 'http://127.0.0.1:5174');
 
   const activePartnerCode = partner?.code || partnerIdInput || 'P102';
@@ -281,9 +281,9 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
 
   return (
     <div className="relative min-h-screen overflow-hidden flex flex-col justify-between select-none">
-      
+
       {/* ===================== HÌNH NỀN MOODY WORKSPACE (1HUMAN.AT AESTHETIC) ===================== */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage: "url('/desk-bg.jpg')",
@@ -297,11 +297,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
       {/* ===================== TOAST THÔNG BÁO ===================== */}
       {toast && (
         <div className="fixed top-20 right-6 z-50 animate-bounce duration-300">
-          <div className={`px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-xl border flex items-center gap-2.5 text-xs font-semibold ${
-            toast.type === 'error'
+          <div className={`px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-xl border flex items-center gap-2.5 text-xs font-semibold ${toast.type === 'error'
               ? 'bg-rose-950/90 text-rose-200 border-rose-800/50'
               : 'bg-teal-950/90 text-teal-200 border-teal-700/50'
-          }`}>
+            }`}>
             {toast.type === 'error' ? <AlertCircle className="w-4 h-4 text-rose-400" /> : <CheckCircle2 className="w-4 h-4 text-teal-400" />}
             <span>{toast.message}</span>
           </div>
@@ -310,18 +309,17 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
 
       {/* ===================== TOP HEADER BAR (CHUẨN 1HUMAN PROGRESS) ===================== */}
       <header className="relative z-20 w-full px-4 sm:px-8 py-5 flex items-center justify-between text-white border-b border-white/5">
-        
+
         {/* Left: Back button + Step Number + Step Title */}
         <div className="flex items-center gap-3 sm:gap-4">
           <button
             type="button"
             onClick={handlePrevStep}
             disabled={currentStep === 1}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-              currentStep === 1 
-                ? 'opacity-25 cursor-not-allowed text-slate-500' 
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${currentStep === 1
+                ? 'opacity-25 cursor-not-allowed text-slate-500'
                 : 'hover:bg-white/10 text-white active:scale-95'
-            }`}
+              }`}
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
@@ -342,7 +340,7 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
 
         {/* Right: Step Counter "X / 4" + 4 Segmented Progress Bar + Close */}
         <div className="flex items-center gap-4">
-          
+
           {/* Badge đối tác đã xác thực */}
           {partner && (
             <div className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
@@ -368,11 +366,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
                     }
                     setCurrentStep(s);
                   }}
-                  className={`h-1.5 w-7 sm:w-10 rounded-full cursor-pointer transition-all duration-300 ${
-                    s <= currentStep 
-                      ? 'bg-[#FF5722]' 
+                  className={`h-1.5 w-7 sm:w-10 rounded-full cursor-pointer transition-all duration-300 ${s <= currentStep
+                      ? 'bg-[#FF5722]'
                       : 'bg-white/20'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -385,14 +382,6 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
                 className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white/90 transition-all border border-white/10"
               >
                 Trang Chủ HH Dental
-              </button>
-              <button
-                type="button"
-                onClick={onNavigateToReception}
-                className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 transition-all border border-teal-500/30 flex items-center gap-1"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>CRM Lễ Tân</span>
               </button>
             </div>
 
@@ -411,17 +400,16 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
 
       {/* ===================== TRUNG TÂM: LIVE CARD PREVIEW ===================== */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-4 sm:py-8">
-        
+
         {/* Chuyển đổi kiểu mã quét: Mã QR vs Barcode */}
         <div className="flex items-center gap-1.5 mb-4 bg-black/40 backdrop-blur-xl px-2 py-1 rounded-full border border-white/10">
           <button
             type="button"
             onClick={() => setCodeType('qr')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              codeType === 'qr'
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${codeType === 'qr'
                 ? 'bg-white text-slate-950 font-bold shadow-md'
                 : 'text-white/60 hover:text-white'
-            }`}
+              }`}
           >
             <QrCode className="w-3.5 h-3.5" />
             <span>Mã QR Quét Lịch</span>
@@ -430,11 +418,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setCodeType('barcode')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
-              codeType === 'barcode'
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${codeType === 'barcode'
                 ? 'bg-white text-slate-950 font-bold shadow-md'
                 : 'text-white/60 hover:text-white'
-            }`}
+              }`}
           >
             <Barcode className="w-3.5 h-3.5" />
             <span>Mã Vạch Barcode</span>
@@ -462,11 +449,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setSelectedStyle('ivory')}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F7F5F0] text-slate-950 font-black text-[11px] italic flex items-center justify-center transition-all ${
-              selectedStyle === 'ivory'
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F7F5F0] text-slate-950 font-black text-[11px] italic flex items-center justify-center transition-all ${selectedStyle === 'ivory'
                 ? 'ring-2 ring-[#FF5722] ring-offset-2 ring-offset-black scale-110 shadow-lg'
                 : 'opacity-80 hover:opacity-100 hover:scale-105'
-            }`}
+              }`}
             title="Ivory Classic"
           >
             1H.
@@ -476,11 +462,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setSelectedStyle('terracotta')}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#E84D2B] text-white font-black text-[11px] italic flex items-center justify-center transition-all ${
-              selectedStyle === 'terracotta'
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#E84D2B] text-white font-black text-[11px] italic flex items-center justify-center transition-all ${selectedStyle === 'terracotta'
                 ? 'ring-2 ring-[#FF5722] ring-offset-2 ring-offset-black scale-110 shadow-lg'
                 : 'opacity-80 hover:opacity-100 hover:scale-105'
-            }`}
+              }`}
             title="Terracotta Orange"
           >
             1H.
@@ -490,11 +475,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setSelectedStyle('white')}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-950 font-black text-[11px] italic flex items-center justify-center transition-all ${
-              selectedStyle === 'white'
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-slate-950 font-black text-[11px] italic flex items-center justify-center transition-all ${selectedStyle === 'white'
                 ? 'ring-2 ring-[#FF5722] ring-offset-2 ring-offset-black scale-110 shadow-lg'
                 : 'opacity-80 hover:opacity-100 hover:scale-105'
-            }`}
+              }`}
             title="Studio White"
           >
             1H.
@@ -504,11 +488,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setSelectedStyle('dark')}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#16181F] text-white border border-white/20 font-black text-[11px] italic flex items-center justify-center transition-all ${
-              selectedStyle === 'dark'
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#16181F] text-white border border-white/20 font-black text-[11px] italic flex items-center justify-center transition-all ${selectedStyle === 'dark'
                 ? 'ring-2 ring-[#FF5722] ring-offset-2 ring-offset-black scale-110 shadow-lg'
                 : 'opacity-80 hover:opacity-100 hover:scale-105'
-            }`}
+              }`}
             title="Matte Obsidian"
           >
             1H.
@@ -518,11 +501,10 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           <button
             type="button"
             onClick={() => setSelectedStyle('gold')}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-[#1C1813] to-[#CFB06C] text-[#F6E3B4] border border-[#CFB06C]/40 font-black text-[11px] italic flex items-center justify-center transition-all ${
-              selectedStyle === 'gold'
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-[#1C1813] to-[#CFB06C] text-[#F6E3B4] border border-[#CFB06C]/40 font-black text-[11px] italic flex items-center justify-center transition-all ${selectedStyle === 'gold'
                 ? 'ring-2 ring-[#FF5722] ring-offset-2 ring-offset-black scale-110 shadow-lg'
                 : 'opacity-80 hover:opacity-100 hover:scale-105'
-            }`}
+              }`}
             title="Luxury Gold"
           >
             1H.
@@ -551,9 +533,9 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
 
       {/* ===================== BOTTOM CONTROLS (PILL INPUT THEO BƯỚC) ===================== */}
       <footer className="relative z-20 w-full pb-8 pt-2 px-4 flex flex-col items-center">
-        
+
         <div className="w-full max-w-xl mx-auto flex flex-col items-center">
-          
+
           {/* Nhãn mờ phía trên input */}
           <div className="flex items-center gap-1.5 text-xs font-semibold text-white/80 mb-2">
             <currentStepData.icon className="w-3.5 h-3.5 text-[#FF5722]" />
@@ -569,7 +551,7 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
             className="w-full relative flex items-center"
           >
             <div className="w-full relative flex items-center rounded-full bg-black/60 border border-white/25 backdrop-blur-2xl px-5 sm:px-6 py-2 shadow-2xl focus-within:border-white/50 focus-within:ring-2 focus-within:ring-white/20 transition-all">
-              
+
               <input
                 type="text"
                 required
@@ -677,16 +659,6 @@ export default function VoucherGenerator({ onNavigateToBooking, onNavigateToWebs
           >
             <span>Trải nghiệm Đặt Lịch</span>
             <ExternalLink className="w-3.5 h-3.5" />
-          </button>
-
-          {/* Nút Cổng Lễ Tân CRM */}
-          <button
-            type="button"
-            onClick={onNavigateToReception}
-            className="px-4 py-2.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-semibold text-xs tracking-wide border border-emerald-500/40 active:scale-95 transition-all flex items-center gap-1.5 backdrop-blur-md cursor-pointer"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span>Quầy Lễ Tân (CRM)</span>
           </button>
         </div>
 
